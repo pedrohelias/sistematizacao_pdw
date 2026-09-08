@@ -12,3 +12,30 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Professional {
+  id             String         @id @default(uuid())
+  name           String
+  spec           String
+  availabilities availability[]
+}
+
+enum WeekDay {
+  Segunda
+  Terça
+  Quarta
+  Quinta
+  Sexta
+  Sabado
+  Domingo
+}
+
+model availability {
+  id              String  @id @default(uuid())
+  professional_id String
+  day             WeekDay
+  start           String
+  end             String
+
+  professional Professional @relation(fields: [professional_id], references: [id], onDelete: Cascade)
+}
