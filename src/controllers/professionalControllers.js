@@ -14,5 +14,21 @@ const showProfessionals = async (req, res) => {
     }
 }
 
+const showProfessionalDisp = async (req, res) => {
+    try{
+        const professionals = await prisma.professional.findMany({
+            include:{
+                availabilities: true
+            }
+        })
+        res.json(professionals)
+    }catch(err){
+        console.log(err)
+        res.status(500).json({
+            error: "Erro ao buscar profissionais"
+        })
+    }
+}
 
-export { showProfessionals}
+
+export { showProfessionals, showProfessionalDisp}
