@@ -31,5 +31,46 @@ const showPatient = async (req, res) => {
     }
 }
 
+const showPatientConsult = async (req, res) => {
+    try{
+        const patient = await prisma.patient.findMany({
+            where: {
+                name: req.query.name
+            },
+            select: {
+                consultations: {
+                    select: {
+                        id: true, 
+                        professional: {
+                            select: {
+                                name: true,
+                                spec: true
+                            }
+                        },
 
-export {createPatient, showPatient}
+                        availability: {
+                            select: {
+                                day:true,
+                                start: true,
+                                end: true
+                            }
+                        }
+
+                        
+                    },
+                }
+                
+                
+            }
+        })
+        res.json(patient)
+    }catch(err){
+        console.log(err)
+        res.status(500).json({
+            error: "Erro ao procurar o paciente"
+        })
+    }
+}
+
+
+export {createPatient, showPatient, showPatientConsult}

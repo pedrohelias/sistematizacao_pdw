@@ -11,7 +11,7 @@ Com o uso da API é possível:
 - Listar disponibilidade específica por profissional; ✅
 - Adição de Paciente; ✅
 - Agendar um exame; ✅
-- Listar os exames de cada paciente (Adicional);
+- Listar os exames de cada paciente;✅
 
 ## Instalação
 
