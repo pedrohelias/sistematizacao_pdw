@@ -9,8 +9,8 @@ Com o uso da API é possível:
 - Filtrar a busca de profissionais pelo nome; ✅
 - Filtrar a busca por especialidade; ✅
 - Listar disponibilidade específica por profissional; ✅
-- Adição de Paciente (Adicional); 
-- Agendar um exame (Adicional);
+- Adição de Paciente; ✅
+- Agendar um exame; ✅
 - Listar os exames de cada paciente (Adicional);
 
 ## Instalação
