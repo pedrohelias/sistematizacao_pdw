@@ -18,6 +18,7 @@ model Professional {
   name           String
   spec           String
   availabilities availability[]
+  consultations  Consultation[]
 }
 
 enum WeekDay {
@@ -37,5 +38,25 @@ model availability {
   start           String
   end             String
 
-  professional Professional @relation(fields: [professional_id], references: [id], onDelete: Cascade)
+  professional  Professional   @relation(fields: [professional_id], references: [id], onDelete: Cascade)
+  consultations Consultation[]
+}
+
+model Patient {
+  id            String         @id @default(uuid())
+  name          String
+  cpf           String
+  email         String
+  consultations Consultation[]
+}
+
+model Consultation {
+  id              String @id @default(uuid())
+  professional_id String
+  patient_id      String
+  availability_id String
+
+  professional Professional @relation(fields: [professional_id], references: [id])
+  patient      Patient      @relation(fields: [patient_id], references: [id])
+  availability availability @relation(fields: [availability_id], references: [id])
 }
