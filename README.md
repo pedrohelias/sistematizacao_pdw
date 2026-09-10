@@ -1,6 +1,7 @@
 # sistematizacao_pdw
 
-API para visualização de horários de médicos e disponibilidade dos mesmos, com o intuito de marcação de consultas.  
+API para visualização de horários de médicos e disponibilidade dos mesmos, criação de paciente, disponibilização de registros de pacientes, consultas e pacientes, e por fim a marcação de consultas.  
+
 ## Sobre a API
 
 Com o uso da API é possível: 
@@ -15,30 +16,60 @@ Com o uso da API é possível:
 
 ## Instalação
 
-Em caso de uso local
-
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-
-
+Em caso de uso local:
 
 ```bash
-pip install foobar
+git clone https://github.com/pedrohelias/sistematizacao_pdw.git
+cd sistematizacao_pdw
+npm install
 ```
+
+Junto a isso, adicionar a expressão abaixo para rodar a API em modo de desenvolvimento e utilizar o nodemon:
+
+```bash
+ "dev": "nodemon src/server.js",
+```
+## Configurando o .env
+
+Para configurar o .env, é necessário adicionar as chaves do banco. Os segredos foram enviados para os usuários selecionados. A base do .env deve ser escrita como mostrado abaixo:
+
+```bash
+
+DATABASE_URL= *****
+NODE_ENV = *****
+
+
+```
+## Preparando o Prisma
+
+```bash
+
+npx prisma generate # vai gerar ou sincronizar todo o schema 
+npx prisma migrate deploy # vai realizar o migration, caso tenha algum
+npm run seed:professional # vai alimentar a base de dados com exemplos reais - não necessário pois a base já está com dados aplicados
+
+
+```
+
 
 ## Uso
 
-```python
-import foobar
 
-# returns 'words'
-foobar.pluralize('word')
+```bash
+npm start #para rodar sem o nodemon, tendo que reinicializar a cada alteração
+npm run dev #rodar em modo de desenvolvimento, com o nodemon aplicado
 
-# returns 'geese'
-foobar.pluralize('goose')
-
-# returns 'phenomenon'
-foobar.singularize('phenomena')
 ```
+
+## Para uso virtual
+
+A API foi deployada no Render, com o seguinte link
+
+```bash
+https://sistematizacao-pdw.onrender.com
+```
+
+É possível realizar requisições a partir dessa URL. Alguns exemplos de requisição serão dispostos no repositório
 
 ## Contribuição
 
