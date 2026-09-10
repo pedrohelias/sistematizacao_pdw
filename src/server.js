@@ -1,6 +1,21 @@
-const express = require("express");
+import express from "express";
+import professionalRoutes from "./routes/professionalRoutes.js";
+import patientRoutes from "./routes/patientRoutes.js"
+import consultRoutes from "./routes/consultRoutes.js"
+import {config} from "dotenv"
+import { connectDB, disconnectDB } from "./config/db.js";
+
+config()
+connectDB()
 
 const app = express();
+
+
+app.use(express.json())
+app.use("/exame", professionalRoutes)
+app.use("/paciente", patientRoutes)
+app.use("/consult", consultRoutes)
+
 
 const PORT = 5001;
 const server = app.listen(PORT, () => {

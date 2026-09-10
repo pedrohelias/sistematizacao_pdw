@@ -1,18 +1,17 @@
 # sistematizacao_pdw
 
-Foobar is a Python library for dealing with word pluralization.
-
+API para visualização de horários de médicos e disponibilidade dos mesmos, com o intuito de marcação de consultas.  
 ## Sobre a API
 
 Com o uso da API é possível: 
 
-- Listar todos os profissionais e suas especialidades; 
-- Filtrar a busca de profissionais pelo nome;
-- Filtrar a busca por especialidade;
-- Listar disponibilidade específica por profissional (Adicional);
-- Adição de Paciente (Adicional); 
-- Agendar um exame (Adicional);
-- Listar os exames de cada paciente (Adicional);
+- Listar todos os profissionais e suas especialidades; ✅
+- Filtrar a busca de profissionais pelo nome; ✅
+- Filtrar a busca por especialidade; ✅
+- Listar disponibilidade específica por profissional; ✅
+- Adição de Paciente; ✅
+- Agendar um exame; ✅
+- Listar os exames de cada paciente;✅
 
 ## Instalação
 
