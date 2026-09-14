@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
+import { generateToken } from "../utils/generateToken.js";
 
 const prisma = new PrismaClient()
 
@@ -43,8 +44,10 @@ const login = async (req, res) => {
             })
         }
 
+        const token = generateToken(patient.id, res)
+
         res.json({status: "Success Login",
-            patient})
+            patient, token})
 
 
     }catch(err){
@@ -55,5 +58,23 @@ const login = async (req, res) => {
     }
 }
 
+const logout = async (req, res) => {
+    try{
+        res.cookie("jwt", "", {
+            httpOnly: true, 
+            expiresIn: new Date(0),
+        })
+        res.status(200).json({
+            status: "success",
+            message: "Logged out"
+        })
+    }catch(err){
+        console.log(err)
+        res.status(500).json({
+            error: "Erro ao logar"
+        })
+    }
+}
 
-export {login}
+
+export {login, logout}

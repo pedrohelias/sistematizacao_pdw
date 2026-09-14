@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
+import { generateToken } from "../utils/generateToken.js";
 
 const prisma = new PrismaClient()
 
@@ -30,7 +31,10 @@ const createPatient = async (req, res) => {
                 password: hashedPassword 
             }
         })
-        res.json(patient)
+        const token = generateToken()
+
+        
+        res.json({patient, token })
         console.log(patient)
     }catch(err){
         console.log(err)

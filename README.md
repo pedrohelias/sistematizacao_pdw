@@ -12,6 +12,8 @@ Com o uso da API é possível:
 - Adição de Paciente; ✅
 - Agendar um exame; ✅
 - Listar os exames de cada paciente;✅
+- Login de usuário;✅
+- Autenticação por token JWT;✅
 
 ## Instalação
 
