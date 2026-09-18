@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -17,47 +11,45 @@ model Professional {
   id             String         @id @default(uuid())
   name           String
   spec           String
-  availabilities availability[]
   consultations  Consultation[]
-}
-
-enum WeekDay {
-  Segunda
-  Terça
-  Quarta
-  Quinta
-  Sexta
-  Sabado
-  Domingo
+  availabilities availability[]
 }
 
 model availability {
-  id              String  @id @default(uuid())
+  id              String         @id @default(uuid())
   professional_id String
   day             WeekDay
   start           String
   end             String
-
-  professional  Professional   @relation(fields: [professional_id], references: [id], onDelete: Cascade)
-  consultations Consultation[]
+  consultations   Consultation[]
+  professional    Professional   @relation(fields: [professional_id], references: [id], onDelete: Cascade)
 }
 
 model Patient {
   id            String         @id @default(uuid())
   name          String
-  cpf           String @unique
-  email         String @unique
-  password String?
+  cpf           String         @unique
+  email         String         @unique
+  password      String?
   consultations Consultation[]
 }
 
 model Consultation {
-  id              String @id @default(uuid())
+  id              String       @id @default(uuid())
   professional_id String
   patient_id      String
   availability_id String
+  availability    availability @relation(fields: [availability_id], references: [id])
+  patient         Patient      @relation(fields: [patient_id], references: [id])
+  professional    Professional @relation(fields: [professional_id], references: [id])
+}
 
-  professional Professional @relation(fields: [professional_id], references: [id])
-  patient      Patient      @relation(fields: [patient_id], references: [id])
-  availability availability @relation(fields: [availability_id], references: [id])
+enum WeekDay {
+  Segunda @map("Segunda")
+  Terca   @map("Terça")
+  Quarta  @map("Quarta")
+  Quinta  @map("Quinta")
+  Sexta   @map("Sexta")
+  Sabado  @map("Sabado")
+  Domingo @map("Domingo")
 }
